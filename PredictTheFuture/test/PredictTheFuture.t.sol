@@ -21,7 +21,15 @@ contract PredictTheFutureTest is Test {
         vm.roll(104293);
         vm.warp(93582192);
 
+        vm.deal(address(exploitContract), 1 ether);
+
         // Put your solution here
+        exploitContract.stepOne();
+
+        vm.roll(104295); // + 2 blocks
+        vm.warp(93582216); // + 24 seconds
+
+        exploitContract.stepTwo();
 
         _checkSolved();
     }
